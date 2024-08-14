@@ -19,6 +19,7 @@ namespace Dss\TwoFactorAuthentication\Model;
 use Magento\Framework\Model\AbstractModel;
 use Dss\TwoFactorAuthentication\Api\Data\UserInterface;
 use Dss\TwoFactorAuthentication\Model\ResourceModel\User as ResourceModelUser;
+use Laminas\Permissions\Acl\Role\RoleInterface;
 
 class User extends AbstractModel implements UserInterface
 {
@@ -45,21 +46,21 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get ID
      *
-     * @return string
+     * @return int
      */
-    public function getId(): string
+    public function getId(): int
     {
-        return $this->getData(self::USER_ID);
+        return (int) $this->getData(self::USER_ID);
     }
 
     /**
      * Get Original User Id
      *
-     * @return int|null
+     * @return int
      */
-    public function getOriginalId(): int|null
+    public function getOriginalId(): int
     {
-        return $this->getData(self::ORIGINAL_USER_ID);
+        return (int) $this->getData(self::ORIGINAL_USER_ID);
     }
 
     /**
@@ -85,11 +86,11 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get Is Active
      *
-     * @return int|string
+     * @return int
      */
-    public function getIsActive(): int|string
+    public function getIsActive(): int
     {
-        return $this->getData(self::IS_ACTIVE);
+        return (int) $this->getData(self::IS_ACTIVE);
     }
 
     /**
@@ -97,7 +98,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return int|null
      */
-    public function getIpEnabled(): int|null
+    public function getIpEnabled(): ?int
     {
         return $this->getData(self::IP_ENABLED);
     }
@@ -107,7 +108,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return string|null
      */
-    public function getIpList(): string|null
+    public function getIpList(): ?string
     {
         return $this->getData(self::IP_LIST);
     }
@@ -126,8 +127,9 @@ class User extends AbstractModel implements UserInterface
      * Set ID
      *
      * @param int $id
+     * @return void
      */
-    public function setId($id)
+    public function setId($id): void
     {
         $this->setData(self::USER_ID, $id);
     }
@@ -136,8 +138,9 @@ class User extends AbstractModel implements UserInterface
      * Set Original User Id
      *
      * @param int $originalId
+     * @return void
      */
-    public function setOriginalId($originalId)
+    public function setOriginalId($originalId): void
     {
         $this->setData(self::ORIGINAL_USER_ID, $originalId);
     }
@@ -146,8 +149,9 @@ class User extends AbstractModel implements UserInterface
      * Set Secret
      *
      * @param string $secret
+     * @return void
      */
-    public function setUserSecret($secret)
+    public function setUserSecret($secret): void
     {
         $this->setData(self::USER_SECRET, $secret);
     }
@@ -156,8 +160,9 @@ class User extends AbstractModel implements UserInterface
      * Set Time Shift
      *
      * @param int $timeShift
+     * @return void
      */
-    public function setTimeShift($timeShift)
+    public function setTimeShift($timeShift): void
     {
         $this->setData(self::TIME_SHIFT, $timeShift);
     }
@@ -166,8 +171,9 @@ class User extends AbstractModel implements UserInterface
      * Set Is Active
      *
      * @param int $value
+     * @return void
      */
-    public function setIsActive($value)
+    public function setIsActive($value): void
     {
         $this->setData(self::IS_ACTIVE, $value);
     }
@@ -176,8 +182,9 @@ class User extends AbstractModel implements UserInterface
      * Set IP Enabled
      *
      * @param int $enabled
+     * @return void
      */
-    public function setIpEnabled($enabled)
+    public function setIpEnabled($enabled): void
     {
         $this->setData(self::IP_ENABLED, $enabled);
     }
@@ -186,8 +193,9 @@ class User extends AbstractModel implements UserInterface
      * Set IP List
      *
      * @param string $list
+     * @return void
      */
-    public function setIpList($list)
+    public function setIpList($list): void
     {
         $this->setData(self::IP_LIST, $list);
     }
@@ -196,8 +204,9 @@ class User extends AbstractModel implements UserInterface
      * Set Email Enabled
      *
      * @param int $enabled
+     * @return void
      */
-    public function setEmailCodeEnabled($enabled)
+    public function setEmailCodeEnabled($enabled): void
     {
         $this->setData(self::EMAIL_CODE_ENABLED, $enabled);
     }

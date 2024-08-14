@@ -21,11 +21,9 @@ use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Magento\Store\Model\System\Store;
 use Dss\TwoFactorAuthentication\Model\User;
 use Dss\TwoFactorAuthentication\Model\Ip;
-use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Data\FormFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
-use Magento\Framework\App\Action\Context as ContextManager;
 use Magento\Authorization\Model\Role;
 use Magento\Framework\Phrase;
 
@@ -37,16 +35,10 @@ class IpSettings extends Generic implements TabInterface
     protected $roleManager;
 
     /**
-     * @var ObjectManagerInterface
-     */
-    protected $objectManager;
-
-    /**
      * Settings constructor.
      *
      * @param Context $context
      * @param Registry $registry
-     * @param ContextManager $contextManager
      * @param FormFactory $formFactory
      * @param Store $systemStore
      * @param User $user
@@ -56,7 +48,6 @@ class IpSettings extends Generic implements TabInterface
     public function __construct(
         Context $context,
         Registry $registry,
-        ContextManager $contextManager,
         protected FormFactory $formFactory,
         protected Store $systemStore,
         protected User $user,
@@ -64,7 +55,6 @@ class IpSettings extends Generic implements TabInterface
         array $data = []
     ) {
         parent::__construct($context, $registry, $formFactory, $data);
-        $this->_objectManager = $contextManager->getObjectManager();
     }
 
     /**

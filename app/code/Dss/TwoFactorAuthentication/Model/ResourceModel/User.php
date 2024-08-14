@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace Dss\TwoFactorAuthentication\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-use Magento\Framework\Model\ResourceModel\Db\Context;
 
 class User extends AbstractDb
 {

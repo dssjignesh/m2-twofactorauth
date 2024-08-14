@@ -33,16 +33,16 @@ interface UserInterface
     /**
      * Get ID
      *
-     * @return string
+     * @return int
      */
-    public function getId(): string;
+    public function getId(): int;
 
     /**
      * Get Original User Id
      *
-     * @return int|null
+     * @return int
      */
-    public function getOriginalId(): int|null;
+    public function getOriginalId(): int;
 
     /**
      * Get Secret
@@ -61,23 +61,23 @@ interface UserInterface
     /**
      * Get Is Active
      *
-     * @return int|string
+     * @return int
      */
-    public function getIsActive(): int|string;
+    public function getIsActive(): int;
 
     /**
      * Get IP Restriction Enabled
      *
      * @return int|null
      */
-    public function getIpEnabled(): int|null;
+    public function getIpEnabled(): ?int;
 
     /**
      * Get IP List
      *
      * @return string|null
      */
-    public function getIpList(): string|null;
+    public function getIpList(): ?string;
 
     /**
      * Get Email enabled
@@ -90,55 +90,63 @@ interface UserInterface
      * Set ID
      *
      * @param int $id
+     * @return void
      */
-    public function setId($id);
+    public function setId($id): void;
 
     /**
      * Set Original Role Id
      *
      * @param int $originalId
+     * @return void
      */
-    public function setOriginalId($originalId);
+    public function setOriginalId($originalId): void;
 
     /**
      * Set Secret
      *
      * @param string $secret
+     * @return void
      */
-    public function setUserSecret($secret);
+    public function setUserSecret($secret): void;
 
     /**
      * Set Time Shift
      *
      * @param int|null $timeShift
+     * @return void
      */
-    public function setTimeShift($timeShift);
+    public function setTimeShift($timeShift): void;
 
     /**
      * Set Is Active
      *
      * @param int $isActive
+     * @return void
      */
-    public function setIsActive($isActive);
+    public function setIsActive($isActive): void;
 
     /**
      * Set IP Restriction Enabled
      *
      * @param int $ipEnabled
+     * @return void
      */
-    public function setIpEnabled($ipEnabled);
+    public function setIpEnabled($ipEnabled): void;
 
     /**
      * Set IP List
      *
      * @param string|null $ipList
+     * @return void
      */
-    public function setIpList($ipList);
+    public function setIpList($ipList): void;
 
     /**
      * Set Email enabled
      *
      * @param int $enabled
+     * @return void
      */
-    public function setEmailCodeEnabled($enabled);
+    public function setEmailCodeEnabled($enabled): void;
 }
