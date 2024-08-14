@@ -49,7 +49,7 @@ abstract class Auth extends AbstractAction
      *
      * @return bool
      */
-    protected function _isAllowed()
+    protected function _isAllowed(): bool
     {
         return true;
     }

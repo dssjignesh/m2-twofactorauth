@@ -22,19 +22,6 @@ use Magento\Framework\Model\ResourceModel\Db\Context;
 class User extends AbstractDb
 {
     /**
-     * Role constructor.
-     *
-     * @param Context $context
-     * @param $connectionName
-     */
-    public function __construct(
-        Context $context,
-        $connectionName = null
-    ) {
-        parent::__construct($context, $connectionName);
-    }
-
-    /**
      * Initialize resource model
      *
      * @return void

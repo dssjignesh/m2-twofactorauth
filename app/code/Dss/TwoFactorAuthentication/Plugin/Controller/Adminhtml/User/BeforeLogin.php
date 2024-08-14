@@ -25,19 +25,9 @@ use Magento\Backend\Controller\Adminhtml\Auth\Login;
 class BeforeLogin
 {
     /**
-     * @var ResultFactory
-     */
-    protected $resultFactory;
-
-    /**
-     * @var Authentication
-     */
-    protected $authModel;
-
-    /**
      * BeforeLogin constructor.
      *
-     * @param Session $authStorage,
+     * @param Session $authStorage
      * @param Redirect $resultRedirectFactory
      */
     public function __construct(

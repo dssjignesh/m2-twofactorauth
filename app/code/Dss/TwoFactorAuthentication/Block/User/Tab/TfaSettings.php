@@ -25,11 +25,13 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Backend\Block\Widget\Form\Element\Dependence;
 use Magento\Framework\DataObject;
+use Magento\Authorization\Model\Role;
+use Magento\Framework\Phrase;
 
 class TfaSettings extends Generic implements TabInterface
 {
     /**
-     * @var mixed
+     * @var Role
      */
     protected $roleManager;
 
@@ -57,7 +59,7 @@ class TfaSettings extends Generic implements TabInterface
     /**
      * Get tab label
      *
-     * @return \Magento\Framework\Phrase
+     * @return Phrase
      */
     public function getTabLabel()
     {
@@ -79,7 +81,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return bool
      */
-    public function canShowTab()
+    public function canShowTab(): bool
     {
         return true;
     }
@@ -89,7 +91,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return bool
      */
-    public function isHidden()
+    public function isHidden(): bool
     {
         return false;
     }
@@ -99,7 +101,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return bool
      */
-    public function isSingleStoreMode()
+    public function isSingleStoreMode(): bool
     {
         return $this->_storeManager->isSingleStoreMode();
     }
@@ -109,7 +111,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return mixed
      */
-    public function getUser()
+    public function getUser(): mixed
     {
         if (!$this->roleManager) {
             $this->roleManager = $this->_coreRegistry->registry('permissions_user');
@@ -122,7 +124,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return string
      */
-    public function getSuffix()
+    public function getSuffix(): string
     {
         return 'setting';
     }
@@ -132,7 +134,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return string
      */
-    protected function _getTimerHtml()
+    protected function _getTimerHtml(): string
     {
         $js = "<span id=\"system_time\"></span>
         <script type=\"text/javascript\">
@@ -163,7 +165,7 @@ class TfaSettings extends Generic implements TabInterface
      * @param string $secret
      * @return string
      */
-    protected function _getQRHtml($secret)
+    protected function _getQRHtml($secret): string
     {
         $email = $this->getUser()->getEmail();
 
@@ -175,7 +177,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return array
      */
-    protected function _getTimeShiftOptions()
+    protected function _getTimeShiftOptions(): array
     {
         for ($i = -24; $i <= 24; $i++) {
             $timeOptions[] = [
@@ -191,7 +193,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return $this
      */
-    protected function _prepareForm()
+    protected function _prepareForm(): self
     {
         $extUser = $this->user->loadOriginal($this->getUser()->getId());
         $newSecret = $this->authModel->createAccountSecret();

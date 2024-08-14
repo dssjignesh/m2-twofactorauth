@@ -120,7 +120,7 @@ class SaveUser
      * @return $this
      * @throws AuthenticationException
      */
-    protected function _validateUser()
+    protected function _validateUser(): self
     {
         $password = $this->request->getParam(
             Main::CURRENT_USER_PASSWORD_FIELD
@@ -137,7 +137,7 @@ class SaveUser
      * @param User $user
      * @return DataObject
      */
-    protected function _getDataUpdated(User $user)
+    protected function _getDataUpdated(User $user): DataObject
     {
         $params = $this->request->getPost('dss_tfa');
         $newData = new DataObject($user->getData());

@@ -33,64 +33,63 @@ interface UserInterface
     /**
      * Get ID
      *
-     * @return int|null
+     * @return string
      */
-    public function getId();
+    public function getId(): string;
 
     /**
      * Get Original User Id
      *
      * @return int|null
      */
-    public function getOriginalId();
+    public function getOriginalId(): int|null;
 
     /**
      * Get Secret
      *
      * @return string
      */
-    public function getUserSecret();
+    public function getUserSecret(): string;
 
     /**
      * Get Time Shift
      *
-     * @return int|null
+     * @return string
      */
-    public function getTimeShift();
+    public function getTimeShift(): string;
 
     /**
      * Get Is Active
      *
-     * @return int|null
+     * @return int|string
      */
-    public function getIsActive();
+    public function getIsActive(): int|string;
 
     /**
      * Get IP Restriction Enabled
      *
      * @return int|null
      */
-    public function getIpEnabled();
+    public function getIpEnabled(): int|null;
 
     /**
      * Get IP List
      *
      * @return string|null
      */
-    public function getIpList();
+    public function getIpList(): string|null;
 
     /**
      * Get Email enabled
      *
-     * @return int
+     * @return string
      */
-    public function getEmailCodeEnabled();
+    public function getEmailCodeEnabled(): string;
 
     /**
      * Set ID
      *
      * @param int $id
-     * @return UserInterface
      */
     public function setId($id);
 
@@ -98,7 +97,6 @@ interface UserInterface
      * Set Original Role Id
      *
      * @param int $originalId
-     * @return UserInterface
      */
     public function setOriginalId($originalId);
 
@@ -106,7 +104,6 @@ interface UserInterface
      * Set Secret
      *
      * @param string $secret
-     * @return UserInterface
      */
     public function setUserSecret($secret);
 
@@ -114,7 +111,6 @@ interface UserInterface
      * Set Time Shift
      *
      * @param int|null $timeShift
-     * @return UserInterface
      */
     public function setTimeShift($timeShift);
 
@@ -122,7 +118,6 @@ interface UserInterface
      * Set Is Active
      *
      * @param int $isActive
-     * @return UserInterface
      */
     public function setIsActive($isActive);
 
@@ -130,7 +125,6 @@ interface UserInterface
      * Set IP Restriction Enabled
      *
      * @param int $ipEnabled
-     * @return UserInterface
      */
     public function setIpEnabled($ipEnabled);
 
@@ -138,7 +132,6 @@ interface UserInterface
      * Set IP List
      *
      * @param string|null $ipList
-     * @return UserInterface
      */
     public function setIpList($ipList);
 
@@ -146,7 +139,6 @@ interface UserInterface
      * Set Email enabled
      *
      * @param int $enabled
-     * @return UserInterface
      */
     public function setEmailCodeEnabled($enabled);
 }

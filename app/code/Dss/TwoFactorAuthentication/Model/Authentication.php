@@ -36,7 +36,7 @@ class Authentication extends AbstractModel
      *
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return true;
     }
@@ -46,7 +46,7 @@ class Authentication extends AbstractModel
      *
      * @return string
      */
-    public function createAccountSecret()
+    public function createAccountSecret(): string
     {
         // php 5.3.0
         $randBytes = openssl_random_pseudo_bytes(self::SECRET_LENGTH, $crypto_strong);
@@ -71,7 +71,7 @@ class Authentication extends AbstractModel
      *
      * @return bool
      */
-    public function userRestricted($data, $password)
+    public function userRestricted($data, $password): bool
     {
         if ($data->getIsActive() && $this->verifySecurely($data, $password)) {
             return false;
@@ -94,7 +94,7 @@ class Authentication extends AbstractModel
      *
      * @return bool
      */
-    public function verifySecurely($data, $otp)
+    public function verifySecurely($data, $otp): bool
     {
         if (strlen($otp) == self::OTP_LENGTH) {
             // compare otp with extended range of server generated otps
@@ -115,7 +115,7 @@ class Authentication extends AbstractModel
      *
      * @return string
      */
-    public function createHotp($data)
+    public function createHotp($data): string
     {
         $time = (int) floor(time() / self::EMAIL_TIME_PERIOD);
 
@@ -129,7 +129,7 @@ class Authentication extends AbstractModel
      *
      * @return string
      */
-    public function createTotp($data, $window_shift = 0)
+    public function createTotp($data, $window_shift = 0): string
     {
         $time = (int) floor((time() + $data->getTimeShift()) / self::TIME_PERIOD);
 
@@ -144,7 +144,7 @@ class Authentication extends AbstractModel
      *
      * @return string
      */
-    public function createOtp($secret, $seed)
+    public function createOtp($secret, $seed): string
     {
         $sTime = "\0\0\0\0" . pack('N*', $seed);
         $hash = hash_hmac('SHA1', $sTime, $this->_decode($secret), true);
@@ -159,8 +159,6 @@ class Authentication extends AbstractModel
      * Decode base
      *
      * @param string $secret
-     *
-     * @return string
      */
     protected function _decode($secret)
     {
@@ -212,7 +210,7 @@ class Authentication extends AbstractModel
      *
      * @return string
      */
-    public function getQRUrl($secret, $account = '', $company = '')
+    public function getQRUrl($secret, $account = '', $company = ''): string
     {
         $account = $account ?? '';
         $encode = 'otpauth://totp/' . urlencode($account) . '?secret=' . $secret;
@@ -220,6 +218,6 @@ class Authentication extends AbstractModel
         if (!empty($company)) {
             $encode .= '&issuer=' . urlencode($company);
         }
-        return 'https://chart.googleapis.com/chart?chs=150x150&chld=M|0&cht=qr&chl=' . urlencode($encode);
+        return 'https://quickchart.io/chart?cht=qr&chs=300x300&chl=' . urlencode($encode);
     }
 }

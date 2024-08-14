@@ -45,9 +45,9 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get ID
      *
-     * @return int|null
+     * @return string
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->getData(self::USER_ID);
     }
@@ -57,7 +57,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return int|null
      */
-    public function getOriginalId()
+    public function getOriginalId(): int|null
     {
         return $this->getData(self::ORIGINAL_USER_ID);
     }
@@ -67,7 +67,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return string
      */
-    public function getUserSecret()
+    public function getUserSecret(): string
     {
         return $this->getData(self::USER_SECRET);
     }
@@ -75,9 +75,9 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get Time Shift
      *
-     * @return int|null
+     * @return string
      */
-    public function getTimeShift()
+    public function getTimeShift(): string
     {
         return $this->getData(self::TIME_SHIFT);
     }
@@ -85,9 +85,9 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get Is Active
      *
-     * @return int|null
+     * @return int|string
      */
-    public function getIsActive()
+    public function getIsActive(): int|string
     {
         return $this->getData(self::IS_ACTIVE);
     }
@@ -97,7 +97,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return int|null
      */
-    public function getIpEnabled()
+    public function getIpEnabled(): int|null
     {
         return $this->getData(self::IP_ENABLED);
     }
@@ -107,7 +107,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return string|null
      */
-    public function getIpList()
+    public function getIpList(): string|null
     {
         return $this->getData(self::IP_LIST);
     }
@@ -115,9 +115,9 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get Email Enabled
      *
-     * @return int
+     * @return string
      */
-    public function getEmailCodeEnabled()
+    public function getEmailCodeEnabled(): string
     {
         return $this->getData(self::EMAIL_CODE_ENABLED);
     }

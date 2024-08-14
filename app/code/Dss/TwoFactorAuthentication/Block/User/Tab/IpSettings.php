@@ -27,6 +27,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\App\Action\Context as ContextManager;
 use Magento\Authorization\Model\Role;
+use Magento\Framework\Phrase;
 
 class IpSettings extends Generic implements TabInterface
 {
@@ -39,11 +40,6 @@ class IpSettings extends Generic implements TabInterface
      * @var ObjectManagerInterface
      */
     protected $objectManager;
-
-    /**
-     * @var FormFactory
-     */
-    protected $formFactory;
 
     /**
      * Settings constructor.
@@ -61,7 +57,7 @@ class IpSettings extends Generic implements TabInterface
         Context $context,
         Registry $registry,
         ContextManager $contextManager,
-        FormFactory $formFactory,
+        protected FormFactory $formFactory,
         protected Store $systemStore,
         protected User $user,
         protected Ip $ipModel,
@@ -69,13 +65,12 @@ class IpSettings extends Generic implements TabInterface
     ) {
         parent::__construct($context, $registry, $formFactory, $data);
         $this->_objectManager = $contextManager->getObjectManager();
-        $this->formFactory = $formFactory;
     }
 
     /**
      * Get tab label
      *
-     * @return \Magento\Framework\Phrase
+     * @return Phrase
      */
     public function getTabLabel()
     {
@@ -97,7 +92,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return bool
      */
-    public function canShowTab()
+    public function canShowTab(): bool
     {
         return true;
     }
@@ -107,7 +102,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return bool
      */
-    public function isHidden()
+    public function isHidden(): bool
     {
         return false;
     }
@@ -117,7 +112,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return bool
      */
-    public function isSingleStoreMode()
+    public function isSingleStoreMode(): bool
     {
         return $this->_storeManager->isSingleStoreMode();
     }
@@ -127,7 +122,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return mixed
      */
-    public function getUser()
+    public function getUser(): mixed
     {
         if (!$this->roleManager) {
             $this->roleManager = $this->_coreRegistry->registry('permissions_user');
@@ -140,7 +135,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return string
      */
-    public function getSuffix()
+    public function getSuffix(): string
     {
         return 'setting';
     }
@@ -152,7 +147,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return mixed
      */
-    public function getFieldValue($field)
+    public function getFieldValue($field): mixed
     {
         return $this->getRole()->getData($field);
     }
@@ -164,7 +159,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return int
      */
-    public function getFieldValueUseConfig($field)
+    public function getFieldValueUseConfig($field): int
     {
         if ($this->getRole()->hasData($field)) {
             return $this->getRole()->getData($field);
@@ -178,7 +173,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return $this
      */
-    protected function _prepareForm()
+    protected function _prepareForm(): self
     {
         $extUser = $this->user->loadOriginal($this->getUser()->getId());
 
