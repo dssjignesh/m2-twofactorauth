@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Digit Software Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category  Dss
+ * @package   Dss_TwoFactorAuthentication
+ * @author    Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Dss_TwoFactorAuthentication::js/aittfa-validation.js"/>
+    </head>
+    <body>
+        <referenceBlock name="adminhtml.user.edit.tabs">
+            <block class="Dss\TwoFactorAuthentication\Block\User\Tab\TfaSettings"
+                name="dss.twofactorauthentication.user.tab.tfasettings" />
+            <action method="addTabAfter">
+                <argument name="name" xsi:type="string">dss_twofactorauthentication_tfa_settings</argument>
+                <argument name="block" xsi:type="string">dss.twofactorauthentication.user.tab.tfasettings</argument>
+                <argument name="after" xsi:type="string">roles_section</argument>
+            </action>
+            <block class="Dss\TwoFactorAuthentication\Block\User\Tab\IpSettings"
+                name="dss.twofactorauthentication.user.tab.ipsettings" />
+            <action method="addTabAfter">
+                <argument name="name" xsi:type="string">dss_twofactorauthentication_ip_settings</argument>
+                <argument name="block" xsi:type="string">dss.twofactorauthentication.user.tab.ipsettings</argument>
+                <argument name="after" xsi:type="string">dss_twofactorauthentication_tfa_settings</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

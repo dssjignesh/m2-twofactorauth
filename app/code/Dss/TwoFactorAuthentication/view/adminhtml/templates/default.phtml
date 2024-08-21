@@ -1,0 +1,32 @@
+<?php
+/**
+ * Digit Software Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category  Dss
+ * @package   Dss_TwoFactorAuthentication
+ * @author    Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+?>
+<div class="admin__field">
+    <label for="otp_password" class="admin__field-label">
+        <span><?= $escaper->escapeHtml(__('One-Time Password')) ?></span>
+    </label>
+    <div class="admin__field-control">
+        <input id="otp_password" class="admin__control-text" type="password"
+            name="<?= $escaper->escapeHtml(\Dss\TwoFactorAuthentication\Helper\Data::LOGIN_FIELD_NAME) ?>" />
+
+        <div class="admin__field-note">
+            <span><?= $escaper->escapeHtml(
+                __(
+                    'Enter a code from your device or leave the field blank if not configured.'
+                )
+            ) ?></span>
+        </div>
+    </div>
+</div>
