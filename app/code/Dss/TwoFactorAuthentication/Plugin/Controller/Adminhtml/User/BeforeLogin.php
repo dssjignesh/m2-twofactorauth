@@ -46,7 +46,7 @@ class BeforeLogin
     {
         if ($this->authStorage->getNeedVerification()) {
             $resultRedirect = $this->resultRedirectFactory;
-            $resultRedirect->setPath('aitauth/auth/resetpassword');
+            $resultRedirect->setPath('dss/auth/resetpassword');
             return $resultRedirect;
         }
 

@@ -152,9 +152,9 @@ class SaveUser
     /**
      * Returns Last Created User
      *
-     * @return \Magento\User\Model\User
+     * @return AdminUser
      */
-    protected function _getLastNewUser()
+    protected function _getLastNewUser(): AdminUser
     {
         return $this->adminUser->getCollection()->setOrder('user_id', 'DESC')->getFirstItem();
     }

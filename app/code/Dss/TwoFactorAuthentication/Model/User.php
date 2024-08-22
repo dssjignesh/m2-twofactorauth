@@ -19,7 +19,6 @@ namespace Dss\TwoFactorAuthentication\Model;
 use Magento\Framework\Model\AbstractModel;
 use Dss\TwoFactorAuthentication\Api\Data\UserInterface;
 use Dss\TwoFactorAuthentication\Model\ResourceModel\User as ResourceModelUser;
-use Laminas\Permissions\Acl\Role\RoleInterface;
 
 class User extends AbstractModel implements UserInterface
 {
@@ -48,19 +47,22 @@ class User extends AbstractModel implements UserInterface
      *
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
-        return (int) $this->getData(self::USER_ID);
+        if ($this->getData(self::USER_ID)) {
+            return (int) $this->getData(self::USER_ID);
+        }
+        return $this->getData(self::USER_ID);
     }
 
     /**
      * Get Original User Id
      *
-     * @return int
+     * @return string
      */
-    public function getOriginalId(): int
+    public function getOriginalId(): ?string
     {
-        return (int) $this->getData(self::ORIGINAL_USER_ID);
+        return $this->getData(self::ORIGINAL_USER_ID);
     }
 
     /**
@@ -68,7 +70,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return string
      */
-    public function getUserSecret(): string
+    public function getUserSecret(): ?string
     {
         return $this->getData(self::USER_SECRET);
     }
@@ -78,7 +80,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return string
      */
-    public function getTimeShift(): string
+    public function getTimeShift(): ?string
     {
         return $this->getData(self::TIME_SHIFT);
     }
@@ -86,19 +88,19 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get Is Active
      *
-     * @return int
+     * @return string
      */
-    public function getIsActive(): int
+    public function getIsActive(): ?string
     {
-        return (int) $this->getData(self::IS_ACTIVE);
+        return (string) $this->getData(self::IS_ACTIVE);
     }
 
     /**
      * Get IP Enabled
      *
-     * @return int|null
+     * @return string
      */
-    public function getIpEnabled(): ?int
+    public function getIpEnabled(): ?string
     {
         return $this->getData(self::IP_ENABLED);
     }
@@ -106,7 +108,7 @@ class User extends AbstractModel implements UserInterface
     /**
      * Get IP List
      *
-     * @return string|null
+     * @return string
      */
     public function getIpList(): ?string
     {
@@ -118,7 +120,7 @@ class User extends AbstractModel implements UserInterface
      *
      * @return string
      */
-    public function getEmailCodeEnabled(): string
+    public function getEmailCodeEnabled(): ?string
     {
         return $this->getData(self::EMAIL_CODE_ENABLED);
     }
