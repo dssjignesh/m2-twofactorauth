@@ -35,47 +35,47 @@ interface UserInterface
      *
      * @return int
      */
-    public function getId(): int;
+    public function getId(): ?int;
 
     /**
      * Get Original User Id
      *
-     * @return int
+     * @return string
      */
-    public function getOriginalId(): int;
+    public function getOriginalId(): ?string;
 
     /**
      * Get Secret
      *
      * @return string
      */
-    public function getUserSecret(): string;
+    public function getUserSecret(): ?string;
 
     /**
      * Get Time Shift
      *
      * @return string
      */
-    public function getTimeShift(): string;
+    public function getTimeShift(): ?string;
 
     /**
      * Get Is Active
      *
-     * @return int
+     * @return ?string
      */
-    public function getIsActive(): int;
+    public function getIsActive(): ?string;
 
     /**
      * Get IP Restriction Enabled
      *
-     * @return int|null
+     * @return string
      */
-    public function getIpEnabled(): ?int;
+    public function getIpEnabled(): ?string;
 
     /**
      * Get IP List
      *
-     * @return string|null
+     * @return string
      */
     public function getIpList(): ?string;
 
@@ -84,7 +84,7 @@ interface UserInterface
      *
      * @return string
      */
-    public function getEmailCodeEnabled(): string;
+    public function getEmailCodeEnabled(): ?string;
 
     /**
      * Set ID

@@ -26,6 +26,7 @@ use Dss\TwoFactorAuthentication\Model\Ip;
 use Dss\TwoFactorAuthentication\Model\User;
 use Magento\Backend\Model\UrlInterface;
 use Magento\Backend\Helper\Data;
+use Magento\Framework\App\ResponseInterface;
 
 class Resetpassword extends Auth
 {
@@ -103,9 +104,9 @@ class Resetpassword extends Auth
      * Redirect to home page
      *
      * @param string|null $url
-     * @return \Magento\Framework\App\ResponseInterface
+     * @return ResponseInterface
      */
-    protected function _homeRedirect($url = null)
+    protected function _homeRedirect(string $url = null): ResponseInterface
     {
         if ($url === null) {
             $url = $this->_objectManager->get(Data::class)->getHomePageUrl();

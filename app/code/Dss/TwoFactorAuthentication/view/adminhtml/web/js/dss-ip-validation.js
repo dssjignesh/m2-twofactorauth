@@ -6,7 +6,7 @@ require(
     ],
     function ($) {
         $.validator.addMethod(
-            'aittfa-ip-validate',
+            'fa-ip-validate',
             function (v) {
                 if (v !== '') {
                     let ipList = v.split(' ');

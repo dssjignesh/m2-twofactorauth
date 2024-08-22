@@ -21,11 +21,11 @@ use Magento\Backend\Block\Widget\Tab\TabInterface;
 use Magento\Store\Model\System\Store;
 use Dss\TwoFactorAuthentication\Model\User;
 use Dss\TwoFactorAuthentication\Model\Ip;
+use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Data\FormFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Authorization\Model\Role;
-use Magento\Framework\Phrase;
 
 class IpSettings extends Generic implements TabInterface
 {
@@ -35,11 +35,16 @@ class IpSettings extends Generic implements TabInterface
     protected $roleManager;
 
     /**
+     * @var ObjectManagerInterface
+     */
+    protected $objectManager;
+
+    /**
      * Settings constructor.
      *
      * @param Context $context
      * @param Registry $registry
-     * @param FormFactory $formFactory
+     * @param FormFactory $_formFactory
      * @param Store $systemStore
      * @param User $user
      * @param Ip $ipModel
@@ -48,23 +53,24 @@ class IpSettings extends Generic implements TabInterface
     public function __construct(
         Context $context,
         Registry $registry,
-        protected FormFactory $formFactory,
+        FormFactory $_formFactory,
         protected Store $systemStore,
         protected User $user,
         protected Ip $ipModel,
         array $data = []
     ) {
-        parent::__construct($context, $registry, $formFactory, $data);
+        parent::__construct($context, $registry, $_formFactory, $data);
     }
 
     /**
      * Get tab label
      *
-     * @return Phrase
+     * @return string
      */
-    public function getTabLabel()
+    public function getTabLabel(): string
     {
-        return __('IP Restriction');
+        $tabLabel = "IP Restriction";
+        return $tabLabel;
     }
 
     /**
@@ -72,7 +78,7 @@ class IpSettings extends Generic implements TabInterface
      *
      * @return string
      */
-    public function getTabTitle()
+    public function getTabTitle(): string
     {
         return $this->getTabLabel();
     }
@@ -167,7 +173,7 @@ class IpSettings extends Generic implements TabInterface
     {
         $extUser = $this->user->loadOriginal($this->getUser()->getId());
 
-        $form = $this->formFactory->create();
+        $form = $this->_formFactory->create();
         $fieldset = $form->addFieldset('ip_config_fieldset', ['legend' => __('Admin IP Restrictions')]);
 
         $fieldset->addField('note', 'note', [
@@ -180,7 +186,7 @@ class IpSettings extends Generic implements TabInterface
             [
                 'name' => "dss_tfa[" . $extUser::IP_LIST . "]",
                 'label' => __('Whitelisted IPs'),
-                'class' => 'aittfa-ip-validate',
+                'class' => 'fa-ip-validate',
                 'note' => 'Use a space to separate IPs.
                 Example: 192.168.135.65 192.168.18.230<br>Leave empty for access from any location.'
                 ]

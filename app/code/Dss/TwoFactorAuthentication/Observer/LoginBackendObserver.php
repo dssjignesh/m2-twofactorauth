@@ -102,7 +102,7 @@ class LoginBackendObserver implements ObserverInterface
      *
      * @return void
      */
-    protected function _sendAdminOtpEmail($user, $newPassword)
+    protected function _sendAdminOtpEmail(mixed $user, string $newPassword): void
     {
         $transport = $this->transportBuilder->setTemplateIdentifier(
             Data::OTP_EMAIL_TEMPLATE

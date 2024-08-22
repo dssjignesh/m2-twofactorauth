@@ -160,7 +160,7 @@ class Authentication extends AbstractModel
      *
      * @param string $secret
      */
-    protected function _decode($secret)
+    protected function _decode(string $secret)
     {
         if (empty($secret)) {
             return '';

@@ -26,7 +26,6 @@ use Magento\Framework\Registry;
 use Magento\Backend\Block\Widget\Form\Element\Dependence;
 use Magento\Framework\DataObject;
 use Magento\Authorization\Model\Role;
-use Magento\Framework\Phrase;
 
 class TfaSettings extends Generic implements TabInterface
 {
@@ -40,7 +39,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @param Context $context
      * @param Registry $registry
-     * @param FormFactory $formFactory
+     * @param FormFactory $_formFactory
      * @param User $user
      * @param Authentication $authModel
      * @param array $data
@@ -48,22 +47,23 @@ class TfaSettings extends Generic implements TabInterface
     public function __construct(
         Context $context,
         Registry $registry,
-        protected FormFactory $formFactory,
+        FormFactory $_formFactory,
         protected User $user,
         protected Authentication $authModel,
         array $data = []
     ) {
-        parent::__construct($context, $registry, $formFactory, $data);
+        parent::__construct($context, $registry, $_formFactory, $data);
     }
 
     /**
      * Get tab label
      *
-     * @return Phrase
+     * @return string
      */
-    public function getTabLabel()
+    public function getTabLabel(): string
     {
-        return __('TFA Settings');
+        $tabLabel = "TFA Settings";
+        return $tabLabel;
     }
 
     /**
@@ -71,7 +71,7 @@ class TfaSettings extends Generic implements TabInterface
      *
      * @return string
      */
-    public function getTabTitle()
+    public function getTabTitle(): string
     {
         return $this->getTabLabel();
     }
@@ -202,7 +202,7 @@ class TfaSettings extends Generic implements TabInterface
         $formData->setUserSecret($newSecret);
         $formData->setTfaKey($newSecret);
 
-        $form = $this->formFactory->create();
+        $form = $this->_formFactory->create();
         $fieldset = $form->addFieldset('main_fieldset', [
             'legend' => __('User Two-Factor Authentication Settings')
         ]);
